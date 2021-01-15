@@ -28,6 +28,10 @@ public class test_leetcode {
         return ans;
     }
 
+    /*
+    2021-1-15  author：曾欢
+    * 字符串反转，共3种方法
+    * */
     public static String strReverse2(String str){
         if(str.length() == 1) return str;
         String ss = "";
