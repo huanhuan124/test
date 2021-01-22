@@ -145,19 +145,122 @@ public class test_leetcode {
         return ans;
 
     }
+    /*
+    * 找出数组中重复的数字，用的map 方法
+    * 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+    * [2, 3, 1, 0, 2, 5, 3]  ==>2
+    * */
+    public static int findRepeatNum(int[] nums){
+        HashMap<Integer,Integer> map = new HashMap();
+        for(int i=0;i<nums.length;i++){
+            if(map.containsKey(nums[i])){
+                return nums[i];
+            }
+            map.put(nums[i],i);
+        }
+        return -1;
+
+    }
+    /*
+     * 找出数组中重复的数字，用一个萝卜一个坑的方法
+     * 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+     * [2, 3, 1, 0, 2, 5, 3]  ==>2
+     * */
+    public static int findRepeatNum2(int[] nums){
+
+        return -1;
+
+    }
+
+
+
+
+
+
+
+
+    /*
+     * 给定一个二进制数组， 计算其中最大连续1的个数。
+     * [1,1,0,1,1,1]   ==>3
+     * */
+    public static int findMaxConsecutiveOnes(int[] nums){
+        int maxCount = 0;
+        int count = 0;
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==1){
+                count++;
+            }else{
+                maxCount = Math.max(maxCount,count);
+                count = 0;
+            }
+
+        }
+        return Math.max(maxCount,count);
+
+    }
+/*
+ * 写一个函数，输入 n ，求斐波那契（Fibonacci）数列的第 n 项。斐波那契数列的定义如下：
+ *
+ * F(0) = 0,   F(1) = 1
+ * F(N) = F(N - 1) + F(N - 2), 其中 N > 1.
+ */
+    public static int fib(int n) {
+        int f =0;
+        if(n<0){
+            return -1;
+        }else if(n<2){
+            return n;
+        }else if(n>2){
+            f=fib(n-1)+fib(n-2);
+            System.out.println(f);
+        }
+        return f;
+    }
+
+/**
+ * 求100以内的素数
+ * 素数：只能被1和本身整除
+ */
+
+    /**
+     * 排序
+     *
+     * @param args
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
     public static void main(String[]  args){
         System.out.println("hello world!");
-        String str = "tmmzuxt";
+//        String str = "tmmzuxt";
 //      noRepetitionMaxStr(str);
-        strReverse3(str);
-        int nums[] = {2,7,9,0};
-        int target = 16;
-        printArray(twoSum(nums,target));
-        System.out.println(numReverse(1463847413));
+//        strReverse3(str);
+//        int nums[] = {2,7,9,0};
+//        int target = 16;
+//        printArray(twoSum(nums,target));
+//        System.out.println(numReverse(1463847413));
+//        int[] nums1 = {6, 36, 1, 0, 22, 33, 3};
+//        System.out.println(findRepeatNum(nums1));
+
+//        int[] binaryNums = {0,1,1,1,1,0,1,1,1};
+//        System.out.println(findMaxConsecutiveOnes(binaryNums));
+
+        fib(5);
 
     }
 }
