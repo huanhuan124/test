@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /*
@@ -218,32 +220,100 @@ public class test_leetcode {
     }
 
 /**
- * 求100以内的素数
- * 素数：只能被1和本身整除
+ * 求n以内的素数的个数
+ * 素数：大于1的自然数，只能被1和本身整除，比如2,3,5,7,11
  */
+
+    public  static int Prime(int n){
+        List<Integer> list = new ArrayList<Integer>();
+        int count =0;
+        if(n < 2) return 0;
+        if(n < 3) count++;
+
+        for(int i = 3; i<Math.sqrt(n); i++){
+
+            if(i%2!=0){
+                list.add(i);
+            }
+
+        }
+
+
+        return count;
+
+    }
+
+
 
     /**
      * 排序
+     * 冒泡排序
+     * 比较相邻的元素，如果第2个比第1个大，交换他们
+     * 针对所有的元素，重复以上步骤，除了最后一个，所以需要length-1次
+     * 每轮询一次，把最大的放到最右边
      *
-     * @param args
+     */
+    public static void popSort(int[] nums){
+        System.out.println("len:"+nums.length);
+        for(int i = 0;i<nums.length-1;i++){
+            for(int j =0;j<nums.length-1-i;j++){
+                System.out.println("i:"+i+"j:"+j);
+                if(nums[j+1] < nums[j]){
+                    int temp = nums[j];
+                    nums[j] = nums[j+1];
+                    nums[j+1] = temp;
+
+                }
+
+            }
+        }
+
+
+
+    }
+
+
+
+    /**
+     * 排序
+     * 快速排序--双指针交换法    *
+     *
      */
 
+    public static void quickSortArray(int[] nums,int startIndex, int endIndex){
+        if(startIndex > endIndex) return;
+        int pivot = nums[startIndex];
+        int left = startIndex;
+        int right = endIndex;
+
+        while (left != right){
+
+            while(left<right && nums[right] >=pivot){
+                right--;
+            }
+            while(left<right && nums[left] <=pivot){
+                left++;
+            }
+
+            if(left<right){
+                int p = nums[left];
+                nums[left] = nums[right];
+                nums[right] = p;
+            }
+
+
+        }
+        int p = nums[left];
+        nums[left] = nums[startIndex];
+        nums[startIndex] = p;
+
+        quickSortArray(nums,startIndex,left-1);
+        quickSortArray(nums,left+1,endIndex);
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
     public static void main(String[]  args){
         System.out.println("hello world!");
@@ -260,7 +330,19 @@ public class test_leetcode {
 //        int[] binaryNums = {0,1,1,1,1,0,1,1,1};
 //        System.out.println(findMaxConsecutiveOnes(binaryNums));
 
-        fib(5);
+//        fib(5);
+        int[] quickNums ={0,8,7,5,6,0,10};
+//        quickSort(quickNums,0,quickNums.length-1);
+//        printArray(quickNums);
+
+//        quickSortArray(quickNums,0,quickNums.length-1);
+//        printArray(quickNums);
+
+        popSort(quickNums);
+        for(int i:quickNums){
+            System.out.println(i);
+        }
+
 
     }
 }
