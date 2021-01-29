@@ -220,36 +220,78 @@ public class test_leetcode {
     }
 
 /**
- * 求n以内的素数的个数
+ * 求n以内的素数的个数  100以内的25个
  * 素数：大于1的自然数，只能被1和本身整除，比如2,3,5,7,11
  */
-
     public static int countPrimes(int n) {
 
-        // List<Integer> list=new ArrayList<Integer>();
         int count = 0;
-
-
         for(int i=2;i<n;i++){
             if(i==2) {
+                System.out.print(i);
                 count++;
                 continue;
             }
-            boolean  flag = true;
+            boolean flag = true;
             double s = Math.sqrt(i);
-            for(int m=2;m<=s;m++){
-                if(i%m==0){
+            for(int j=2;j<=s;j++){
+                if(i%j==0){
+                    flag = false;
+                    break;
+
+                }
+            }
+
+            if(flag) {
+                System.out.print(i);
+                count++;
+            }
+        }
+
+        return count;
+    }
+
+
+    /**
+     * 求n以内合数的个数  100以内的73个
+     * 合数：大于1的整数，除了被1和本身整除外，还能被其他数整除。比如4,6,8,9,10,12,14,15,
+     */
+    public static int countComposite(int n) {
+        int compositeCount = 0;
+        int count = 0;
+        for(int i=2;i<n;i++){
+
+            if(i==2) {
+                System.out.print("质数："+i);
+                count++;
+                continue;
+            }
+            boolean flag = true;
+            for(int j=2;j<=Math.sqrt(i);j++){
+
+                if(i%j==0){
                     flag = false;
                     break;
                 }
             }
-            if(flag)  count++;
+            if(flag) {
+                System.out.print("\t质数："+i);
+                count++;
+            }else{
+                System.out.print("\t合数："+i);
+                compositeCount++;
+            }
+
+
+
         }
+        System.out.println("\n"+count);
+        System.out.println(compositeCount);
 
-
-        return count;
+        return compositeCount;
 
     }
+
 
 
 
@@ -351,7 +393,8 @@ public class test_leetcode {
 //            System.out.println(i);
 //        }
 
-        System.out.println(countPrimes(13));
+        System.out.println("\n"+"质数的个数："+countPrimes(100));
+        System.out.println(countComposite(100));
 
 
     }
