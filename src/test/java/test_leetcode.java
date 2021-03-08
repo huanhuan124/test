@@ -298,10 +298,10 @@ public class test_leetcode {
     /**
      * 排序
      * 冒泡排序
-     * 比较相邻的元素，如果第2个比第1个大，交换他们
-     * 针对所有的元素，重复以上步骤，除了最后一个，所以需要length-1次
+     * 比较相邻的元素，如果第2个比第1个大，交换他们，一次比较以后，最大数在右边，所以外面最多需要比较length-1次
+     * 针对所有的元素，重复以上步骤，所以里面需要length-1-i次
      * 每轮询一次，把最大的放到最右边
-     *
+     * 算法复杂度0(n~2)
      */
     public static void popSort(int[] nums){
         System.out.println("len:"+nums.length);
