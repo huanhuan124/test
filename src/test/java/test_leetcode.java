@@ -71,29 +71,23 @@ public class test_leetcode {
     public static String  strReverse(String str){
         if(str.length() == 1) return str;
         System.out.println("反转前的字符串："+str);
+
+        //字符串转换成数组
         char newStr[] = str.toCharArray();
-        char temp;
         int start=0;
         int end=newStr.length-1;
         String ss ="";
         while(start<end){
-            temp = newStr[end];
+            char temp = newStr[end];
             newStr[end] = newStr[start];
             newStr[start] = temp;
             start++;
             end--;
 
         }
-
-        for(int i=0;i<newStr.length;i++){
-//            System.out.println(newStr[i]);
-            ss+=newStr[i];
-
-        }
-        System.out.println("反转后的字符串："+ss);
-
-
-        return ss;
+        //数组转换成字符串  return new String(newStr);
+        System.out.println("反转后的字符串："+new String(newStr));
+        return new String(newStr);
 
     }
 
@@ -367,9 +361,9 @@ public class test_leetcode {
 
     public static void main(String[]  args){
         System.out.println("hello world!");
-//        String str = "tmmzuxt";
+        String str = "tmmzuxt";
 //      noRepetitionMaxStr(str);
-//        strReverse3(str);
+        strReverse(str);
 //        int nums[] = {2,7,9,0};
 //        int target = 16;
 //        printArray(twoSum(nums,target));
@@ -381,7 +375,7 @@ public class test_leetcode {
 //        System.out.println(findMaxConsecutiveOnes(binaryNums));
 
 //        fib(5);
-        int[] quickNums ={0,8,7,5,6,0,10};
+//        int[] quickNums ={0,8,7,5,6,0,10};
 //        quickSort(quickNums,0,quickNums.length-1);
 //        printArray(quickNums);
 
@@ -393,8 +387,8 @@ public class test_leetcode {
 //            System.out.println(i);
 //        }
 
-        System.out.println("\n"+"质数的个数："+countPrimes(100));
-        System.out.println(countComposite(100));
+//        System.out.println("\n"+"质数的个数："+countPrimes(100));
+//        System.out.println(countComposite(100));
 
 
     }
