@@ -36,6 +36,7 @@ public class test_leetcode {
 
     /*
       * 字符串反转，共3种方法
+      * 1、把字符串转换成一个数组，然后从尾到头遍历这个数组，然后把数组的每个元素从尾到头拼接一下
     * */
     public static String strReverse2(String str){
         if(str.length() == 1) return str;
@@ -51,7 +52,10 @@ public class test_leetcode {
         System.out.println("反转后的字符串："+ss);
         return ss;
     }
-
+    /*
+    * 2、遍历字符串，然后把字符串从当前字符与当前的字符串拼接（第一次字符串为空，字符为第一个字符）
+    * 这样第一次拼接的那个字符就放到最后了
+    * */
     public static String strReverse3(String str){
         if(str.length() == 1) return str;
         String ss = "";
@@ -67,7 +71,9 @@ public class test_leetcode {
 
 
 
-
+    /*
+    * 遍历字符串，第一个和最后一个对调，第二个和倒数第二个对调，一直到中间的
+    * */
     public static String  strReverse(String str){
         if(str.length() == 1) return str;
         System.out.println("反转前的字符串："+str);
@@ -124,26 +130,52 @@ public class test_leetcode {
     如果ans = ans * 10 + x % 10溢出，则 y>=214748364
     当y=214748364时，输入的值只能为：1463847412，此时不溢出
     即：ans > 214748364 || ans < -214748364 必定溢出
+    *数字反转
     *
-    * */
-    public static int  numReverse(int num){
-        int ans = 0;
-        while(num!=0){
-            if(ans> 214748364|| ans<-214748364) {
-                System.out.println("溢出了");
-                return 0;
-            }
-            System.out.println("111");
-            ans = ans*10+num%10;
-            num = num/10;
+    *
+    *
+     *使用 Math.pow(2,31)由于数据太大会出现科学计数法，与int型的数据无法进行比较
+     * 思路大概是这样的
+     * 因为32位的有符号整数，则其数值范围为 [−2**31,2**31−1]
+     * 如果在这个范围之外，就溢出了，如果是个位数就直接返回
+     * 否则就循环这个数，只要他不为0，取余得到下一次的num，取模得到后面要加的数
+     */
+    public static int numReverse(int num){
+        if(num > Math.pow(2,31)-1 || num < Math.pow(-2,31)) {
+            System.out.println("111111111111");
+            return -1;
         }
-        System.out.println(ans);
-        return ans;
-
+        if (num < 10 && num >-10) return num;
+        int newNum = 0;
+        while(num!=0){
+            int temp = num%10;
+            num = num/10;
+            newNum = newNum*10+temp;
+        }
+        return newNum;
     }
+
+
+    /**
+     * 把数字转换为字符串，然后把字符串反转，再把字符串转回数字
+     */
+
+    public static int numReverse2(int num){
+        System.out.println("原始数字：" + num);
+        String str = Integer.toString(num);
+        String strNew = new StringBuffer(str).reverse().toString();
+        System.out.println("数字转换为字符串后反转："+strNew);
+        int numNew = Integer.valueOf(strNew);
+        System.out.println("反转后的数字："+numNew);
+        return numNew;
+    }
+
+
+
     /*
     * 找出数组中重复的数字，用的map 方法
-    * 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
+    * 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，
+    * 但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
     * [2, 3, 1, 0, 2, 5, 3]  ==>2
     * */
     public static int findRepeatNum(int[] nums){
@@ -157,6 +189,9 @@ public class test_leetcode {
         return -1;
 
     }
+
+
+
     /*
      * 找出数组中重复的数字，用一个萝卜一个坑的方法
      * 在一个长度为 n 的数组 nums 里的所有数字都在 0～n-1 的范围内。数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
@@ -275,13 +310,9 @@ public class test_leetcode {
                 System.out.print("\t合数："+i);
                 compositeCount++;
             }
-
-
-
         }
         System.out.println("\n"+count);
         System.out.println(compositeCount);
-
         return compositeCount;
 
     }
@@ -363,10 +394,10 @@ public class test_leetcode {
         System.out.println("hello world!");
         String str = "tmmzuxt";
 //      noRepetitionMaxStr(str);
-        strReverse(str);
+//        strReverse(str);
 //        int nums[] = {2,7,9,0};
 //        int target = 16;
-//        printArray(twoSum(nums,target));
+//         printArray(twoSum(nums,target));
 //        System.out.println(numReverse(1463847413));
 //        int[] nums1 = {6, 36, 1, 0, 22, 33, 3};
 //        System.out.println(findRepeatNum(nums1));
